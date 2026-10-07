@@ -1,0 +1,91 @@
+name: Deploy al-folio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '_homepage/**'
+      - '.github/workflows/deploy-al-folio.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: al-folio-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out homepage content
+        uses: actions/checkout@v4
+        with:
+          path: site-input
+      - name: Check out official al-folio template
+        uses: actions/checkout@v4
+        with:
+          repository: alshedivat/al-folio
+          ref: b5ecd1a6bd3f94474a87710c76fd81cf9f0e0fa2
+          path: site
+      - name: Apply personal content
+        run: python3 site-input/_homepage/prepare.py site-input/_homepage site
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.5'
+          bundler-cache: true
+          working-directory: site
+      - name: Build site
+        working-directory: site
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --trace --config _config.yml,../site-input/_homepage/config.yml
+      - name: Validate generated pages and local links
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          from urllib.parse import unquote, urlsplit
+          root = Path('site/_site').resolve()
+          expected = {'index.html': 'Guangwei', 'publications/index.html': 'Convergence of finite element methods for Ricci flow', 'bio/index.html': 'Peking University'}
+          for path, text in expected.items():
+              document = (root / path).read_text()
+              assert text in document, f'Missing content: {path}'
+              assert 'Albert Einstein' not in document and 'User Name' not in document, path
+          assert (root / 'assets/pdf/CV.pdf').read_bytes().startswith(b'%PDF-')
+          class Links(HTMLParser):
+              def handle_starttag(self, tag, attrs):
+                  for key, value in attrs:
+                      if key not in ('href', 'src') or not value:
+                          continue
+                      url = urlsplit(value)
+                      if url.scheme or url.netloc or not url.path:
+                          continue
+                      candidate = root / unquote(url.path.lstrip('/')) if url.path.startswith('/') else self.base / unquote(url.path)
+                      assert candidate.exists(), f'Broken local link: {self.page}: {value}'
+          for path in expected:
+              parser = Links()
+              parser.page = path
+              parser.base = (root / path).parent
+              parser.feed((root / path).read_text())
+          print('Three pages, CV, and local links verified.')
+          PY
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/_site
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish website
+        id: deployment
+        uses: actions/deploy-pages@v4

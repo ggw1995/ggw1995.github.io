@@ -27,6 +27,13 @@ for name in ["about.md", "publications.md", "bio.md"]:
     shutil.copy2(content / name, theme / "_pages" / name)
 shutil.copy2(content / "socials.yml", theme / "_data/socials.yml")
 shutil.copy2(content / "CV.pdf", theme / "assets/pdf/CV.pdf")
+shutil.copy2(content / "pale-blue-dot.jpg", theme / "assets/img/pale-blue-dot.jpg")
+# Use a descriptive alternative text for the photograph.
+layout = theme / "_layouts/about.liquid"
+layout.write_text(
+    layout.read_text().replace("alt=page.profile.image\n", "alt=page.profile.image_alt\n"),
+    encoding="utf-8",
+)
 (theme / "_bibliography/papers.bib").write_text("", encoding="utf-8")
 (theme / "_pages/404.md").write_text(
     '---\nlayout: page\ntitle: Page not found\npermalink: /404.html\n---\n\n'
@@ -48,5 +55,8 @@ with custom.open("a", encoding="utf-8") as handle:
 .post article table { width: 100%; margin-bottom: 1.5rem; }
 .post article th, .post article td { padding: .5rem .7rem; text-align: left; border-bottom: 1px solid var(--global-divider-color); }
 footer.sticky-bottom { margin-top: 3rem; }
+.profile .more-info { font-family: inherit; }
+.profile .pale-blue-dot-caption { font-size: .8rem; line-height: 1.55; color: var(--global-text-color-light); }
+.profile .pale-blue-dot-caption p { display: block; margin: 0 0 .65rem; }
 ''')
 print("Prepared Guangwei Gao's al-folio site.")

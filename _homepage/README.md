@@ -19,8 +19,11 @@ checks local links and page content, and publishes the result to GitHub Pages.
 Only the generated `_site` directory is published. The former template files
 in the repository root are retained as a backup and are not part of the live site.
 
-Photos and news are currently disabled. To add a portrait later, copy your image
-to `assets/img/` in `prepare.py` and enable the `profile` block in `about.md`.
+The About page displays `pale-blue-dot.jpg` on the right using the `profile`
+block in `about.md`; its caption and credit can be edited there. The image is
+Voyager 1's Pale Blue Dot (1990, reprocessed in 2020), credited to
+[NASA/JPL-Caltech](https://science.nasa.gov/mission/voyager/voyager-1s-pale-blue-dot/).
+`prepare.py` copies it to the published image folder. News is disabled.
 
 The al-folio template is MIT licensed. Its original license is retained in the
 template checkout. The textual content was prepared from Guangwei Gao's CV.

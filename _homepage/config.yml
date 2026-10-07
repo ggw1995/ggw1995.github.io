@@ -1,0 +1,62 @@
+title: blank
+first_name: Guangwei
+middle_name: ""
+last_name: Gao
+description: >-
+  Guangwei Gao, Postdoctoral Fellow in Applied Mathematics at The Hong Kong Polytechnic University.
+  Finite element methods, geometric flows, and numerical methods for partial differential equations.
+contact_note: ""
+keywords: Guangwei Gao, computational mathematics, finite element methods, geometric flows, Ricci flow
+lang: en
+icon: ∇
+url: https://ggw1995.github.io
+baseurl: ""
+last_updated: true
+footer_text: >-
+  Powered by <a href="https://jekyllrb.com/">Jekyll</a> with
+  <a href="https://github.com/alshedivat/al-folio">al-folio</a>.
+  Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+navbar_fixed: true
+footer_fixed: false
+max_width: 930px
+search_enabled: false
+socials_in_search: false
+posts_in_search: false
+bib_search: false
+serve_og_meta: true
+serve_schema_org: true
+external_sources: []
+jekyll_get_json: []
+disqus_shortname: ""
+blog_name: ""
+blog_description: ""
+pagination:
+  enabled: false
+related_blog_posts:
+  enabled: false
+jekyll-archives:
+  posts:
+    enabled: []
+  books:
+    enabled: []
+imagemagick:
+  enabled: false
+enable_darkmode: true
+enable_math: true
+enable_masonry: false
+enable_medium_zoom: false
+enable_progressbar: true
+enable_publication_thumbnails: false
+enable_publication_badges:
+  altmetric: false
+  dimensions: false
+  google_scholar: false
+  inspirehep: false
+scholar:
+  last_name: [Gao]
+  first_name: [Guangwei, G.]
+  group_by: year
+external_links:
+  enabled: true
+  rel: external noopener noreferrer
+  target: _blank

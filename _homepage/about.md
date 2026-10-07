@@ -3,18 +3,7 @@ layout: about
 title: About
 permalink: /
 subtitle: Postdoctoral Fellow · Department of Applied Mathematics · The Hong Kong Polytechnic University
-profile:
-  align: right
-  image: pale-blue-dot.jpg
-  image_circular: false
-  image_alt: Earth as a tiny dot in a sunbeam, photographed by Voyager 1.
-  more_info: >-
-    <div class="pale-blue-dot-caption">
-      <p><strong>Pale Blue Dot</strong></p>
-      <p>“That’s here. That’s home. That’s us.”<br>— Carl Sagan</p>
-      <p>Voyager 1 · 1990<br>
-      <a href="/assets/img/pale-blue-dot.jpg" target="_blank" rel="noopener">View full image ↗</a></p>
-    </div>
+profile: false
 selected_papers: false
 social: true
 announcements:

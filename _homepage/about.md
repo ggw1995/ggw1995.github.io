@@ -12,8 +12,7 @@ profile:
     <div class="pale-blue-dot-caption">
       <p><strong>Pale Blue Dot</strong></p>
       <p>“That’s here. That’s home. That’s us.”<br>— Carl Sagan</p>
-      <p>Voyager 1 · 1990 (reprocessed 2020)<br>
-      Image: <a href="https://science.nasa.gov/mission/voyager/voyager-1s-pale-blue-dot/">NASA/JPL-Caltech</a><br>
+      <p>Voyager 1 · 1990<br>
       <a href="/assets/img/pale-blue-dot.jpg" target="_blank" rel="noopener">View full image ↗</a></p>
     </div>
 selected_papers: false

@@ -25,7 +25,7 @@ Here is my [CV]({{ '/assets/pdf/CV.pdf' | relative_url }}).
 - Elliptic equations in non-divergence form and fully nonlinear PDEs, including Hamilton–Jacobi–Bellman and Monge–Ampère equations.
 - Auxiliary space preconditioners and fast solvers for finite element discretizations.
 - Structure-preserving numerical methods
--  non-standard finite element methods.
+- Non-standard finite element methods.
 
 ## Contact
 
